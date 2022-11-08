@@ -1,0 +1,23 @@
+{% block tittle %}
+    Sign Up
+{% endblock tittle %}
+
+{% block Content %}
+
+    <form action="{{url_for('home')}}" method="POST">
+        {{form.fullName.label}}: <br>
+        {{form.fullName}}
+        <br>
+        {{form.email.label}}: <br>
+        {{form.email}}
+        <br>
+        {{form.password.label}}: <br>
+        {{form.password}}
+        <br>
+        {{form.confirmPassword.label}}: <br>
+        {{form.confirmPassword}}
+        <br>
+        {{form.submit}}
+    </form>
+
+{% endblock Content %}

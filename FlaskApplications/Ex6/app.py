@@ -1,7 +1,5 @@
 """Flask Application for Paws Rescue Center."""
 from flask import Flask, render_template, abort
-from forms import SigupForm
-
 app = Flask(__name__)
 
 """Information regarding the Pets in the System."""
@@ -11,7 +9,6 @@ pets = [
             {"id": 3, "name": "Basker", "age": "1 year", "bio": "I love barking. But, I love my friends more."},
             {"id": 4, "name": "Mr. Furrkins", "age": "5 years", "bio": "Probably napping."}, 
         ]
-
 
 @app.route("/")
 def homepage():
@@ -36,9 +33,5 @@ def details(id):
         return render_template("details.html", pet=pets[id])
 
 
-@app.route('/signup', methods=['POST'])
-def sigup():
-    form = SigupForm()
-    
 if __name__ == "__main__":
     app.run(debug=True, host="0.0.0.0", port=3000)
