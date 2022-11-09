@@ -39,7 +39,9 @@ def details(id):
 @app.route("/signup", methods=['POST', 'GET'])
 def signup():
     form = SigupForm()
-    return render_template("signup.html", form=form)
+    if form.validate_on_submit():
+        return render_template("login.html", message="Successfully Logged In")
+    return render_template("signup.html", form=form, message='Invalid signup')
 
 
 

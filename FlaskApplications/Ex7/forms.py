@@ -5,7 +5,7 @@ from flask_wtf import FlaskForm
 
 class SigupForm(FlaskForm):
     fullName = StringField('Full Name', validators=[InputRequired()])
-    email = StringField('E-Mail', validators=[InputRequired(), Email()])
+    email = StringField('E-Mail', validators=[InputRequired(), Email(message="Insert valid email format")])
     password = PasswordField('Password', validators=[InputRequired()])
-    confirmPassword = PasswordField('Confirm Password', validators=[InputRequired(), EqualTo('password')])
+    confirmPassword = PasswordField('Confirm Password', validators=[InputRequired(), EqualTo('password', message='Passwords must match')])
     submit = SubmitField('Login')

@@ -12,6 +12,7 @@
             <p><a href="{{url_for('about')}}">About</a></p>
         </nav>
     </div>
+    {{message}}
     <form action="{{url_for('signup')}}" method="POST">
         {{form.fullName.label}}: <br>
         {{form.fullName}}
