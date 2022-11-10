@@ -1,5 +1,5 @@
 """Flask Application for Paws Rescue Center."""
-from flask import Flask, render_template, abort, request
+from flask import Flask, render_template, abort, request, url_for, redirect
 from forms import SigupForm, LoginForm
 app = Flask(__name__)
 
@@ -48,12 +48,26 @@ def signup():
         if form.is_submitted():
             if form.validate():
                 users.append({"id": len(users)+1, "full_name": form.full_name.data, "email": form.email.data, "password": form.password.data})
-                return render_template("successful.html", message="Successfully Logged In")
+                return render_template("successful.html", message="Successfully Signup In")
             return render_template("signup.html", form=form,)
         return render_template("signup.html", form=form, message="No field can be blank")
     return render_template("signup.html", form=form)
 
 
+@app.route("/login", methods=['POST', 'GET'])
+def login():
+    form = LoginForm()
+    if request.method == 'POST':
+        if form.is_submitted():
+            if form.validate():
+                for user in users:
+                    if form.email.data in user:
+                        return redirect(url_for('homepage'))
+                return render_template('login.html', form=form, message="No user found")
+            return render_template('login.html', form=form)
+        return render_template('login.html', form=form, message="No field can be blank")
+    return render_template('login.html', form=form)
+
 
 if __name__ == "__main__":
-    app.run(debug=True, host="0.0.0.0", port=3000)
+    app.run(debug=True, port=3000)
