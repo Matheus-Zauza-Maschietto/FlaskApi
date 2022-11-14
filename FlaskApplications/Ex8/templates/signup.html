@@ -5,13 +5,6 @@
 {% endblock tittle %}
 
 {% block content %}
-    <div style="display: flex; j">
-        <h1>Sign Up</h1>
-        <nav style="display: flex;">
-            <p><a href="{{url_for('homepage')}}">Home</a></p>
-            <p><a href="{{url_for('about')}}">About</a></p>
-        </nav>
-    </div>
     {{message}}
     <form action="{{url_for('signup')}}" method="POST">
         {{form.full_name.label}}: <br>

@@ -15,6 +15,7 @@ pets = [
 
 users = [
             {"id": 1, "full_name": "Pet Rescue Team", "email": "team@pawsrescue.co", "password": "adminpass"},
+            {"id": 2, "full_name": "Matheus Zauza maschietto", "email": " matheus_maschietto@yahoo.com.br", "password": "12345 "}
         ]
 
 
@@ -57,12 +58,14 @@ def signup():
 @app.route("/login", methods=['POST', 'GET'])
 def login():
     form = LoginForm()
+    print(request.method)
     if request.method == 'POST':
         if form.is_submitted():
             if form.validate():
                 for user in users:
-                    if form.email.data in user:
-                        return redirect(url_for('homepage'))
+                    if form.email.data in user and form.password.data in user:
+                        
+                        return render_template('login.html', form=form, message="Successfully logged")
                 return render_template('login.html', form=form, message="No user found")
             return render_template('login.html', form=form)
         return render_template('login.html', form=form, message="No field can be blank")
