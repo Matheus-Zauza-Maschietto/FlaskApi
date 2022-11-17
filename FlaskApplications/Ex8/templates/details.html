@@ -1,17 +1,14 @@
-{% extends 'base.html' %}
+{% extends "base.html" %}
 
-{% block tittle %}
-    Details
-{% endblock tittle %}
+{% block title %} {{pet["name"]}}'s Details {% endblock %} 
 
-{% block content %}
-    <main id="mainDetails">
-        <img src="{{url_for('static', filename=pet['id']|string+'.jpg')}}" alt="Imagem pet">
-        <div class="infos">
-            <h1>{{pet['name']}}</h1>
-            <p><strong>Age:</strong> {{pet['age']}}</p>
-            <p><strong>Bio:</strong> {{pet['bio']}}</p>
-        </div>
-    </main>
-{% endblock content %}
-    
+{% block content %} 
+    <div style="float:left; border-style:double;">
+        <img src= "{{url_for('static', filename = pet["id"]|string+".jpg")}}" height="350" >
+    </div> 
+    <div style="float:left; margin:10px;">
+        <h1 class="title">{{ pet["name"] }}</h1>
+        <p><b>Age: &nbsp;</b> {{pet["age"]}}</p>
+        <p><b>Bio: &nbsp;</b> {{pet["bio"]}}</p>
+    </div>
+{% endblock %}
